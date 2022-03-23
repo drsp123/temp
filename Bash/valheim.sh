@@ -11,13 +11,14 @@ sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv
 sudo unzip awscliv2.zip
 sudo ./aws/install
 
-#create random string
+#create random string and add stack name to variables
 VHPW=$(echo $RANDOM | md5sum | head -c 20)
 STACKNAME=$(</tmp/mcParamName.txt)
 VHPW=$VHPW-$STACKNAME
+PARAMNAME=mcValheimPW-$STACKNAME
 
 #put random string into parameter store as encrypted string value
-aws ssm put-parameter --name "mcValheimPW" --value $VHPW --type "SecureString" --overwrite
+aws ssm put-parameter --name $PARAMNAME --value $VHPW --type "SecureString" --overwrite
 
 #install docker and valheim app on docker
 sudo apt install docker-ce docker-ce-cli containerd.io -y
