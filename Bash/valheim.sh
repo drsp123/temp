@@ -13,7 +13,7 @@ sudo ./aws/install
 
 #create random string
 VHPW=$(echo $RANDOM | md5sum | head -c 20)
-VHPW="VHPW-$STACKNAME"
+VHPW=$VHPW-$STACKNAME
 
 #put random string into parameter store as encrypted string value
 aws ssm put-parameter --name "mcValheimPW" --value $VHPW --type "SecureString" --overwrite
