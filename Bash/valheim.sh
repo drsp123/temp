@@ -13,6 +13,7 @@ sudo ./aws/install
 
 #create random string
 VHPW=$(echo $RANDOM | md5sum | head -c 20)
+STACKNAME=$(</tmp/mcParamName.txt)
 VHPW=$VHPW-$STACKNAME
 
 #put random string into parameter store as encrypted string value
